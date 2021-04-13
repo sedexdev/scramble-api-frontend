@@ -3,6 +3,7 @@ from core.views import core_blueprint
 from users.views import user_blueprint
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'temp_key'
 
 app.register_blueprint(core_blueprint)
 app.register_blueprint(user_blueprint)

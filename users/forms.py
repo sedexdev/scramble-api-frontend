@@ -21,3 +21,11 @@ class ResetForm(FlaskForm):
 
     email = StringField('Email', validators=[Email()])
     submit = SubmitField('Submit')
+
+
+class UpdateForm(FlaskForm):
+
+    password = PasswordField('Current Password', validators=[DataRequired()])
+    new_pw = PasswordField('New Password', validators=[DataRequired()])
+    confirm_pw = PasswordField('Confirm Password', validators=[DataRequired()])
+    submit = SubmitField('Submit')

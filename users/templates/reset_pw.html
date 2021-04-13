@@ -2,6 +2,15 @@
 
 {% block body %}
 
-<h1>Reset</h1>
+<div class="form-container">
+    <h1 class="form-heading">Reset</h1>
+    <form class="form">
+        {{ form.hidden_tag() }}
+        {{ form.email.label(class='form-label') }} 
+        {{ form.email(class='form-input') }}
+        {{ form.submit(class='submit-btn') }}
+    </form>
+    <p class="user-link"><a href="{{url_for('users.login')}}">Back</a></p>
+</div> 
 
 {% endblock %}

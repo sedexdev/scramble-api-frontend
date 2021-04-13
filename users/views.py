@@ -1,33 +1,53 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, flash, render_template
+from .forms import LoginForm, RegisterForm, ResetForm
+import requests
 
 user_blueprint = Blueprint(
     'users',
     __name__,
     template_folder='templates')
 
+url = 'www.example.com'
+
 
 @user_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST':
-        pass
-    return render_template(
-        'login.html',
-        title='Login')
+    form = LoginForm()
+    if form.validate_on_submit():
+        res = requests.post(url, data={
+            'email': form.email.data,
+            'password': form.password.data})
+        if res.status_code == 200:
+            flash(res.message, 'message')
+        else:
+            flash(res.message, 'warning')
+        return render_template('login.html', title='Login', form=form)
+    return render_template('login.html', title='Login', form=form)
 
 
 @user_blueprint.route('/register', methods=['GET', 'POST'])
 def register():
-    if request.method == 'POST':
-        pass
-    return render_template(
-        'register.html',
-        title='Register')
+    form = RegisterForm()
+    if form.validate_on_submit():
+        res = requests.post(url, data={
+            'email': form.email.data,
+            'password': form.password.data})
+        if res.status_code == 200:
+            flash(res.message, 'message')
+        else:
+            flash(res.message, 'warning')
+        return render_template('register.html', title='Register', form=form)
+    return render_template('register.html', title='Register', form=form)
 
 
 @user_blueprint.route('/reset', methods=['GET', 'POST'])
 def reset():
-    if request.method == 'POST':
-        pass
-    return render_template(
-        'reset_pw.html',
-        title='Reset')
+    form = ResetForm()
+    if form.validate_on_submit():
+        res = requests.post(url, data={'email': form.email.data})
+        if res.status_code == 200:
+            flash(res.message, 'message')
+        else:
+            flash(res.message, 'warning')
+        return render_template('reset.html', title='Reset', form=form)
+    return render_template('reset_pw.html', title='Reset', form=form)

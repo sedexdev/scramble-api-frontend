@@ -2,6 +2,17 @@
 
 {% block body %}
 
-<h1>Register</h1>
+<div class="form-container">
+    <h1 class="form-heading">Register</h1>
+    <form class="form">
+        {{ form.hidden_tag() }}
+        {{ form.email.label(class='form-label') }} 
+        {{ form.email(class='form-input') }}
+        {{ form.password.label(class='form-label') }}
+        {{ form.password(class='form-input') }}
+        {{ form.submit(class='submit-btn') }}
+    </form>
+    <p class="user-link">Already registered? <a href="{{url_for('users.login')}}">Login</a></p>
+</div> 
 
 {% endblock %}

@@ -30,7 +30,7 @@ class APIForm(FlaskForm):
     )
 
     plaintext = SelectField(
-        'Plaintext',
+        'Plaintext Type',
         choices=[
             ('text', 'Text'),
             ('file', 'File')

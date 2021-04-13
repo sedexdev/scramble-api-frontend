@@ -31,7 +31,8 @@ def register():
     if form.validate_on_submit():
         res = requests.post(url, data={
             'email': form.email.data,
-            'password': form.password.data})
+            'password': form.password.data,
+            'confirm_pw': form.confirm_pw.data})
         if res.status_code == 200:
             flash(res.message, 'message')
         else:

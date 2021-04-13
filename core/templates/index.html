@@ -2,6 +2,24 @@
 
 {% block body %}
 
-<h1>Index</h1>
+<div class="form-container">
+    <h1 class="form-heading">Scramble API</h1>
+    <form class="form">
+        {{ form.hidden_tag() }}
+        {{ form.service.label(class='form-label') }} 
+        {{ form.service(class='form-input') }}
+        {{ form.encryption.label(class="form-label") }}
+        {{ form.encryption(class="form-radio") }}
+        {{ form.hashing.label(class="form-label") }}
+        {{ form.hashing(class="form-radio") }}
+        {{ form.plaintext.label(class='form-label') }}
+        {{ form.plaintext(class='form-input') }}
+        {{ form.text.label(class='form-label') }}
+        {{ form.text(class='form-input') }}
+        {{ form.file_upload.label(class='form-label') }}
+        {{ form.file_upload(class='form-input') }}
+        {{ form.submit(class='submit-btn') }}
+    </form>
+</div> 
 
 {% endblock %}

@@ -7,11 +7,11 @@
     <form class="form">
         {{ form.hidden_tag() }}
         {{ form.password.label(class='form-label') }} 
-        {{ form.password(class='form-input') }}
+        {{ form.password(class='form-input', , id='password') }}
         {{ form.new_pw.label(class='form-label') }}
-        {{ form.new_pw(class='form-input') }}
+        {{ form.new_pw(class='form-input', id='new_pw') }}
         {{ form.confirm_pw.label(class='form-label') }}
-        {{ form.confirm_pw(class='form-input') }}
+        {{ form.confirm_pw(class='form-input', id='confirm_pw') }}
         {{ form.submit(class='submit-btn') }}
     </form>
 </div> 

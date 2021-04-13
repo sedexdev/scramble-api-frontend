@@ -7,7 +7,7 @@
     <form class="form">
         {{ form.hidden_tag() }}
         {{ form.email.label(class='form-label') }} 
-        {{ form.email(class='form-input') }}
+        {{ form.email(class='form-input', id='email') }}
         {{ form.submit(class='submit-btn') }}
     </form>
     <p class="user-link"><a href="{{url_for('users.login')}}">Back</a></p>

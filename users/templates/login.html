@@ -7,9 +7,9 @@
     <form class="form">
         {{ form.hidden_tag() }}
         {{ form.email.label(class='form-label') }} 
-        {{ form.email(class='form-input') }}
+        {{ form.email(class='form-input', id='email') }}
         {{ form.password.label(class='form-label') }}
-        {{ form.password(class='form-input') }}
+        {{ form.password(class='form-input', id='password') }}
         {{ form.submit(class='submit-btn') }}
     </form>
     <p class="user-link">Haven't registered? <a href="{{url_for('users.register')}}">Register</a></p>

@@ -17,4 +17,4 @@ as well as creating hash digests for passwords and sensitive data.
 
 # License
 
-https://github.com/sedexdev/scramble-api-frontend/blob/main/LICENSE
+<a href="https://github.com/sedexdev/scramble-api-frontend/blob/main/LICENSE">MIT</a>

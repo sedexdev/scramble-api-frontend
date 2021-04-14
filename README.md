@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/sedexdev/scramble-api-frontend.svg?branch=main)](https://travis-ci.com/sedexdev/scramble-api-frontend)
+
 # Sramble
 
 This repo contains the frontend application code for the Scramble API. 

@@ -1,3 +1,4 @@
+
 [![Build Status](https://travis-ci.com/sedexdev/scramble-api-frontend.svg?branch=main)](https://travis-ci.com/sedexdev/scramble-api-frontend)
 
 # Sramble

@@ -1,9 +1,10 @@
+import os
 from flask import Flask
 from core.views import core_blueprint
 from users.views import user_blueprint
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'temp_key'
+app.config.from_object(os.environ['APP_SETTINGS'])
 
 app.register_blueprint(core_blueprint)
 app.register_blueprint(user_blueprint)

@@ -1,0 +1,13 @@
+language: python
+python:
+  - "3.8"
+# command to install dependencies
+install:
+  - pip install -r requirements.txt
+env:
+  global:
+    - APP_SETTINGS="config.TestingConfig"
+    - SECRET_KEY="blah_blah_blah"
+# command to run tests
+script:
+  - pytest

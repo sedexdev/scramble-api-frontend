@@ -18,7 +18,7 @@ html, body {
     color: #fff;
     font-weight: bold;
     font-size: 1.4rem;
-    padding: 50px;
+    padding: 20px;
 }
 .message {
     background-color: chartreuse;
@@ -79,14 +79,20 @@ html, body {
 }
 
 /* Core API Page */
-.main-header {
+.main-header,
+.main-header-resize {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     background-color: darkred;
     height: 70px;
     width: 100%;
     padding: 10px;
+}
+.main-header {
+    justify-content: space-between;
+}
+.main-header-resize {
+    justify-content: right;
 }
 .app-name-container {
     margin-left: 20px;
@@ -98,4 +104,28 @@ html, body {
 }
 .logout-container {
     margin-right: 20px;
+}
+.invisible {
+    display: none;
+}
+
+/* Media Queries */
+@media (max-width: 1000px) {
+    /* API forms */
+    .form {
+        width: 70%;
+    }
+}
+@media (max-width: 700px) {
+    /* Core styles */
+    .main-container {
+        width: 100%;
+    }
+
+    /* Flashed messages */
+
+    /* API forms */
+    .form {
+        width: 90%;
+    }
 }

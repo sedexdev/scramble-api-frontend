@@ -3,9 +3,9 @@
 {% block body %}
 
 <main class="api-form-container">
-    <header class="main-header">
-        <div class="app-name-container">
-            <p class="app-name">Scramble</p>
+    <header class="main-header" id="main-header">
+        <div class="app-name-container" id="app-name">
+            <p class="app-name">Scramble API</p>
         </div>
         <div class="logout-container">
             <form method="post">
@@ -14,7 +14,7 @@
         </div>
     </header>
     <div class="form-container">
-        <h1 class="form-heading">Scramble API</h1>
+        <h1 class="invisible" id="core-heading">Scramble API</h1>
         <form class="form">
             {{ form.hidden_tag() }}
             {{ form.service.label(class='form-label') }} 

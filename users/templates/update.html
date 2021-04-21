@@ -4,7 +4,7 @@
 
 <div class="form-container">
     <h1 class="form-heading">Update Password</h1>
-    <form class="form">
+    <form class="form" method="POST">
         {{ form.hidden_tag() }}
         {{ form.password.label(class='form-label') }} 
         {{ form.password(class='form-input', id='password') }}

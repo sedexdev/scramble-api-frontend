@@ -4,6 +4,15 @@
         email.focus();
     }
 
+    const flash_collection = document.getElementsByClassName('flash-container');
+    if (flash_collection) {
+        setTimeout(() => {
+            for (let el of flash_collection) {
+                el.remove();
+            }
+        }, 4000);
+    }
+
     const setClasses = (el, toGo, toAdd) => {
         el.classList.remove(toGo);
         el.classList.add(toAdd);
@@ -26,5 +35,5 @@
                 setClasses(coreHeading, 'form-heading', 'invisible');
             }  
         }
-    })
+    });
 })();

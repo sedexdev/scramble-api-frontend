@@ -12,12 +12,13 @@ html, body {
 /* Flashed messages */
 .message,
 .warning {
-    position: absolute;
+    position: fixed;
     top: 30px;
-    right: 30px;
+    right: 50px;
     color: #fff;
     font-weight: bold;
     font-size: 1.4rem;
+    border-radius: 5px;
     padding: 20px;
 }
 .message {

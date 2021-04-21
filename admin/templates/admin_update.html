@@ -3,18 +3,17 @@
 {% block body %}
 
 <div class="form-container">
-    <h1 class="form-heading">Register</h1>
+    <h1 class="form-heading">Update Admin Password</h1>
     <form class="form" method="POST">
         {{ form.hidden_tag() }}
-        {{ form.email.label(class='form-label') }} 
-        {{ form.email(class='form-input', id='email') }}
-        {{ form.password.label(class='form-label') }}
+        {{ form.password.label(class='form-label') }} 
         {{ form.password(class='form-input', id='password') }}
+        {{ form.new_pw.label(class='form-label') }}
+        {{ form.new_pw(class='form-input', id='new_pw') }}
         {{ form.confirm_pw.label(class='form-label') }}
         {{ form.confirm_pw(class='form-input', id='confirm_pw') }}
         {{ form.submit(class='submit-btn') }}
     </form>
-    <p class="user-link">Already registered? <a href="{{url_for('users.login')}}">Login</a></p>
 </div> 
 
 {% endblock %}

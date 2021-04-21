@@ -8,14 +8,14 @@
             <p class="app-name">Scramble API</p>
         </div>
         <div class="logout-container">
-            <form method="post">
+            <form method="POST">
                 <input type="submit" class="logout-btn" value="&#8617; Logout">
             </form>
         </div>
     </header>
     <div class="form-container">
         <h1 class="invisible" id="core-heading">Scramble API</h1>
-        <form class="form">
+        <form class="form" method="POST">
             {{ form.hidden_tag() }}
             {{ form.service.label(class='form-label') }} 
             {{ form.service(class='form-input') }}

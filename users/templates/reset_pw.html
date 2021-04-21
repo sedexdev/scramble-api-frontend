@@ -4,7 +4,7 @@
 
 <div class="form-container">
     <h1 class="form-heading">Reset</h1>
-    <form class="form">
+    <form class="form" method="POST">
         {{ form.hidden_tag() }}
         {{ form.email.label(class='form-label') }} 
         {{ form.email(class='form-input', id='email') }}

@@ -1,4 +1,5 @@
 from flask import Blueprint, flash, render_template
+from utils import check_is_staging
 from .forms import LoginForm, RegisterForm, ResetForm, UpdateForm
 import requests
 
@@ -12,6 +13,7 @@ url = 'www.example.com'
 
 @user_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
+    check_is_staging()
     form = LoginForm()
     if form.validate_on_submit():
         res = requests.post(url, data={
@@ -27,6 +29,7 @@ def login():
 
 @user_blueprint.route('/register', methods=['GET', 'POST'])
 def register():
+    check_is_staging()
     form = RegisterForm()
     if form.validate_on_submit():
         res = requests.post(url, data={
@@ -43,6 +46,7 @@ def register():
 
 @user_blueprint.route('/reset', methods=['GET', 'POST'])
 def reset():
+    check_is_staging()
     form = ResetForm()
     if form.validate_on_submit():
         res = requests.post(url, data={'email': form.email.data})
@@ -56,6 +60,7 @@ def reset():
 
 @user_blueprint.route('/update', methods=['GET', 'POST'])
 def update():
+    check_is_staging()
     form = UpdateForm()
     if form.validate_on_submit():
         res = requests.post(url, data={

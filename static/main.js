@@ -4,10 +4,10 @@
         email.focus();
     }
 
-    const flash_collection = document.getElementsByClassName('flash-container');
-    if (flash_collection) {
+    const flashCollection = document.getElementsByClassName('flash-container');
+    if (flashCollection) {
         setTimeout(() => {
-            for (let el of flash_collection) {
+            for (let el of flashCollection) {
                 el.remove();
             }
         }, 4000);

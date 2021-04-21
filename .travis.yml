@@ -10,4 +10,4 @@ env:
     - SECRET_KEY="blah_blah_blah"
 # command to run tests
 script:
-  - pytest
+  - python -m pytest -v

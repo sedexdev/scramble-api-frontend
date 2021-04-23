@@ -19,7 +19,7 @@ admin_blueprint = Blueprint(
 
 
 @admin_blueprint.route('/admin', methods=['GET', 'POST'])
-def admin():
+def login_admin():
     form = AdminForm()
     if request.method == 'POST':
         if form.validate_on_submit():
@@ -67,3 +67,9 @@ def update_admin():
         flash('Password updated', 'message')
         return redirect(url_for('core.index'))
     return render_template('admin_update.html', form=form)
+
+
+@admin_blueprint.route('/logout', methods=['POST'])
+def logout_admin():
+    session.clear()
+    return redirect(url_for('admin.login_admin'))

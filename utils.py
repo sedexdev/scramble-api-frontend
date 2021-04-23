@@ -7,4 +7,4 @@ def check_is_staging():
         admin_username = session.get('ADMIN_USERNAME')
         if not admin_username:
             flash('Admin access only', 'warning')
-            return redirect(url_for('admin.admin'))
+            return redirect(url_for('admin.login_admin'))

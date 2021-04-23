@@ -15,4 +15,7 @@ env:
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
 script:
+  - python manage.py db init
+  - python manage.py db migrate
+  - python manage.py db upgrade
   - python -m pytest -v

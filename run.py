@@ -37,8 +37,8 @@ def create_app(config):
     return app, db
 
 
-if __name__ == '__main__':
-    config = os.environ['APP_SETTINGS']
-    app, database = create_app(config)
+config = os.environ['APP_SETTINGS']
+app, database = create_app(config)
 
+if __name__ == '__main__':
     app.run(host='127.0.0.1', port=8000, debug=True)

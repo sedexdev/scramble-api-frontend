@@ -9,25 +9,23 @@ class AdminUser(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
-    password_hash = db.Column(db.String(80), nullable=False)
+    password_hash = db.Column(db.String(255), nullable=False)
     created = db.Column(
         db.DateTime,
         nullable=False,
-        default=datetime.utcnow)
+        default=datetime.utcnow())
     modified = db.Column(
         db.DateTime,
         nullable=False,
-        default=datetime.utcnow)
+        default=datetime.utcnow())
     last_login = db.Column(
         db.DateTime,
         nullable=False,
-        default=datetime.utcnow)
-    login_attempts = db.Column(db.Integer)
+        default=datetime.utcnow())
+    login_attempts = db.Column(db.Integer, default=0)
 
     def hash_pw(self, password):
-        hash = generate_password_hash(password, salt_length=12)
-        self.password_hash = hash
-        return True
+        return generate_password_hash(password, salt_length=12)
 
     def check_pw(self, password):
         return check_password_hash(self.password_hash, password)

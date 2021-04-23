@@ -18,12 +18,8 @@ def register_extensions(app):
 
 
 def create_app(config):
-    base_dir = os.path.abspath(os.path.dirname(__file__))
-    db_dir = f'{base_dir}/db'
-
     app = Flask(__name__)
     app.config.from_object(config)
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_dir}/data.db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     register_extensions(app)
@@ -38,10 +34,11 @@ def create_app(config):
     app.register_blueprint(core_blueprint)
     app.register_blueprint(user_blueprint)
 
-    return app
+    return app, db
 
 
 if __name__ == '__main__':
     config = os.environ['APP_SETTINGS']
-    app = create_app(config)
+    app, database = create_app(config)
+
     app.run(host='127.0.0.1', port=8000, debug=True)

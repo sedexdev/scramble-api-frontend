@@ -1,9 +1,9 @@
-from flask import current_app, flash, redirect, session, url_for
-from config import StagingConfig
+import os
+from flask import flash, redirect, session, url_for
 
 
 def check_is_staging():
-    if current_app.config == StagingConfig:
+    if os.environ['APP_SETTINGS'] == 'config.StagingConfig':
         admin_username = session.get('ADMIN_USERNAME')
         if not admin_username:
             flash('Admin access only', 'warning')

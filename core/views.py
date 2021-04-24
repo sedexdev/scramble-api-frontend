@@ -1,8 +1,10 @@
 from flask import (
     Blueprint,
     flash,
-    render_template)
-from utils import check_is_staging
+    redirect,
+    render_template,
+    url_for)
+from utils import is_staging
 from .forms import APIForm
 import requests
 
@@ -16,7 +18,8 @@ url = 'www.example.com'
 
 @core_blueprint.route('/', methods=['GET', 'POST'])
 def index():
-    check_is_staging()
+    if is_staging():
+        return redirect(url_for('admin.login_admin'))
     form = APIForm()
     if form.validate_on_submit():
         res = requests.post(url, data={

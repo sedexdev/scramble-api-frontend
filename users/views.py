@@ -1,5 +1,10 @@
-from flask import Blueprint, flash, render_template
-from utils import check_is_staging
+from flask import (
+    Blueprint,
+    flash,
+    redirect,
+    render_template,
+    url_for)
+from utils import is_staging
 from .forms import LoginForm, RegisterForm, ResetForm, UpdateForm
 import requests
 
@@ -13,7 +18,8 @@ url = 'www.example.com'
 
 @user_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
-    check_is_staging()
+    if is_staging():
+        return redirect(url_for('admin.login_admin'))
     form = LoginForm()
     if form.validate_on_submit():
         res = requests.post(url, data={
@@ -29,7 +35,8 @@ def login():
 
 @user_blueprint.route('/register', methods=['GET', 'POST'])
 def register():
-    check_is_staging()
+    if is_staging():
+        return redirect(url_for('admin.login_admin'))
     form = RegisterForm()
     if form.validate_on_submit():
         res = requests.post(url, data={
@@ -46,7 +53,8 @@ def register():
 
 @user_blueprint.route('/reset', methods=['GET', 'POST'])
 def reset():
-    check_is_staging()
+    if is_staging():
+        return redirect(url_for('admin.login_admin'))
     form = ResetForm()
     if form.validate_on_submit():
         res = requests.post(url, data={'email': form.email.data})
@@ -60,7 +68,8 @@ def reset():
 
 @user_blueprint.route('/update', methods=['GET', 'POST'])
 def update():
-    check_is_staging()
+    if is_staging():
+        return redirect(url_for('admin.login_admin'))
     form = UpdateForm()
     if form.validate_on_submit():
         res = requests.post(url, data={

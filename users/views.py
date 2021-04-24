@@ -4,7 +4,7 @@ from flask import (
     redirect,
     render_template,
     url_for)
-from utils import is_staging
+from utils import is_staging, admin_auth
 from .forms import LoginForm, RegisterForm, ResetForm, UpdateForm
 import requests
 
@@ -18,7 +18,7 @@ url = 'www.example.com'
 
 @user_blueprint.route('/login', methods=['GET', 'POST'])
 def login():
-    if is_staging():
+    if is_staging() and not admin_auth():
         return redirect(url_for('admin.login_admin'))
     form = LoginForm()
     if form.validate_on_submit():
@@ -35,7 +35,7 @@ def login():
 
 @user_blueprint.route('/register', methods=['GET', 'POST'])
 def register():
-    if is_staging():
+    if is_staging() and not admin_auth():
         return redirect(url_for('admin.login_admin'))
     form = RegisterForm()
     if form.validate_on_submit():
@@ -53,7 +53,7 @@ def register():
 
 @user_blueprint.route('/reset', methods=['GET', 'POST'])
 def reset():
-    if is_staging():
+    if is_staging() and not admin_auth():
         return redirect(url_for('admin.login_admin'))
     form = ResetForm()
     if form.validate_on_submit():
@@ -68,7 +68,7 @@ def reset():
 
 @user_blueprint.route('/update', methods=['GET', 'POST'])
 def update():
-    if is_staging():
+    if is_staging() and not admin_auth():
         return redirect(url_for('admin.login_admin'))
     form = UpdateForm()
     if form.validate_on_submit():

@@ -7,7 +7,7 @@ from flask import (
     session,
     url_for)
 from models import AdminUser
-from utils import is_staging
+from utils import is_staging, admin_auth
 from extensions import db
 from .forms import AdminForm, AdminUpdateForm
 
@@ -52,7 +52,7 @@ def login_admin():
 
 @admin_blueprint.route('/admin/update', methods=['GET', 'POST'])
 def update_admin():
-    if is_staging():
+    if is_staging() and not admin_auth():
         return redirect(url_for('admin.login_admin'))
     form = AdminUpdateForm()
     if form.validate_on_submit():

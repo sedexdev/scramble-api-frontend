@@ -4,7 +4,7 @@ from flask import (
     redirect,
     render_template,
     url_for)
-from utils import is_staging
+from utils import is_staging, admin_auth
 from .forms import APIForm
 import requests
 
@@ -18,7 +18,7 @@ url = 'www.example.com'
 
 @core_blueprint.route('/', methods=['GET', 'POST'])
 def index():
-    if is_staging():
+    if is_staging() and not admin_auth():
         return redirect(url_for('admin.login_admin'))
     form = APIForm()
     if form.validate_on_submit():

@@ -1,5 +1,6 @@
 from datetime import datetime
 from werkzeug.security import check_password_hash, generate_password_hash
+
 from extensions import db
 
 
@@ -24,13 +25,13 @@ class AdminUser(db.Model):
         default=datetime.utcnow())
     login_attempts = db.Column(db.Integer, default=0)
 
-    def hash_pw(self, password):
+    def hash_pw(self, password: str) -> bool:
         return generate_password_hash(password, salt_length=12)
 
-    def check_pw(self, password):
+    def check_pw(self, password: str) -> bool:
         return check_password_hash(self.password_hash, password)
 
-    def verify_password(self, password):
+    def verify_password(self, password: str) -> bool:
         length = len(password) > 12
         upper = any(x.isupper() for x in password)
         lower = any(x.islower() for x in password)

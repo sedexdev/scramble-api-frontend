@@ -1,12 +1,15 @@
+import requests
+
 from flask import (
     Blueprint,
     flash,
     redirect,
     render_template,
     url_for)
+from werkzeug.wrappers import Response
+
 from utils import is_staging, admin_auth
 from .forms import APIForm
-import requests
 
 core_blueprint = Blueprint(
     'core',
@@ -17,10 +20,11 @@ url = 'www.example.com'
 
 
 @core_blueprint.route('/', methods=['GET', 'POST'])
-def index():
+def index() -> Response:
     if is_staging() and not admin_auth():
         return redirect(url_for('admin.login_admin'))
     form = APIForm()
+    index_args = {'title': 'Scramble API', 'form': form}
     if form.validate_on_submit():
         res = requests.post(url, data={
             'service': form.serivce.data,
@@ -34,5 +38,5 @@ def index():
             flash(res.message, 'message')
         else:
             flash(res.message, 'warning')
-        return render_template('index.html', title='Scramble API', form=form)
-    return render_template('index.html', title='Scramble API', form=form)
+        return render_template('index.html', **index_args)
+    return render_template('index.html', **index_args)

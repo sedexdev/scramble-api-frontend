@@ -1,9 +1,12 @@
 import os
+from typing import Union
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
 from extensions import db
 
 
-def import_blueprints():
+def import_blueprints() -> None:
     global admin_blueprint
     global core_blueprint
     global user_blueprint
@@ -13,11 +16,11 @@ def import_blueprints():
     from users.views import user_blueprint
 
 
-def register_extensions(app):
+def register_extensions(app: Flask) -> None:
     db.init_app(app)
 
 
-def create_app(config):
+def create_app(config: str) -> Union[Flask, SQLAlchemy]:
     app = Flask(__name__)
     app.config.from_object(config)
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

@@ -110,6 +110,26 @@ html, body {
     display: none;
 }
 
+/* Footer */
+.footer-container {
+    background-color: #444;
+}
+.footer-text-container {
+    padding: 40px;
+}
+.footer-text {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.footer-link {
+    text-decoration: none;
+    color: rgb(0, 204, 255);
+}
+.footer-link:hover {
+    color: rgb(0, 100, 139);
+}
+
 /* Staging Admin Logout */
 .admin-logout-container {
     position: fixed;

@@ -32,14 +32,16 @@
             </div>
         {% endif %}
         
-        <footer>
-            <div class="footer-container">
-                <div class="footer-text-container">
-                    <p class="footer-text">Scrammble API created by sedex</p>
-                    <p class="footer-text">Follow the project or get involved on <a class="footer-link" href="https://github.com/sedexdev">Github</a></p>
+        {% if url_for(request.endpoint) == '/' %}
+            <footer>
+                <div class="footer-container">
+                    <div class="footer-text-container">
+                        <p class="footer-text">Scrammble API created by sedex</p>
+                        <p class="footer-text">Follow the project or get involved on <a class="footer-link" href="https://github.com/sedexdev">Github</a></p>
+                    </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
+        {% endif %}
         <script src="{{url_for('static', filename='main.js')}}"></script>
     </body>
 </html>

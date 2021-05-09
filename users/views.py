@@ -30,9 +30,10 @@ def login() -> Response:
             'password': form.password.data})
         if res.status_code == 200:
             flash(res.message, 'message')
+            return redirect(url_for('core.index'))
         else:
             flash(res.message, 'warning')
-        return render_template('login.html', **login_args)
+            return render_template('login.html', **login_args)
     return render_template('login.html', **login_args)
 
 
@@ -49,9 +50,10 @@ def register() -> Response:
             'confirm_pw': form.confirm_pw.data})
         if res.status_code == 200:
             flash(res.message, 'message')
+            return redirect(url_for('users.login'))
         else:
             flash(res.message, 'warning')
-        return render_template('register.html', **register_args)
+            return render_template('register.html', **register_args)
     return render_template('register.html', **register_args)
 
 
@@ -65,9 +67,10 @@ def reset() -> Response:
         res = requests.post(url, data={'email': form.email.data})
         if res.status_code == 200:
             flash(res.message, 'message')
+            return redirect(url_for('users.update'))
         else:
             flash(res.message, 'warning')
-        return render_template('reset.html', **reset_args)
+            return render_template('reset.html', **reset_args)
     return render_template('reset_pw.html', **reset_args)
 
 
@@ -84,7 +87,8 @@ def update() -> Response:
             'confirm_pw': form.confirm_pw.data})
         if res.status_code == 200:
             flash(res.message, 'message')
+            return redirect(url_for('users.login'))
         else:
             flash(res.message, 'warning')
-        return render_template('update.html', **update_args)
+            return render_template('update.html', **update_args)
     return render_template('update.html', **update_args)

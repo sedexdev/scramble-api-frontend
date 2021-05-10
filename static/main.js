@@ -1,4 +1,6 @@
 (function() {
+    const windowWidth = window.innerWidth;
+
     // Focus on the email field of login/registration forms
     const email = document.getElementById('email');
     if (email) {
@@ -22,7 +24,6 @@
     }
 
     window.addEventListener('resize', () => {
-        const windowWidth = window.innerWidth;
         const mainHeader = document.getElementById('main-header');
         const coreBannerTitle = document.getElementById('app-name');
         const coreHeading = document.getElementById('core-heading');

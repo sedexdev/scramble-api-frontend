@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div>
+    <div class="api-form-container">
+        <header class="main-header">
+            <div class="app-name-container invisible">
+                <p class="app-name">Scramble API</p>
+            </div>
+            <div class="logout-container">
+                <form method="POST">
+                    <input type="submit" class="logout-btn" value="&#8617; Logout">
+                </form>
+            </div>
+        </header>
+    
+        <div class="form-container">
+            <h1 class="core-heading invisible">Scramble API</h1>
+            <form class="form" method="POST" enctype = "multipart/form-data">
+                {{ form.hidden_tag() }}
+                {{ form.hashing.label(class="form-label", id="hashing-label") }}
+                {{ form.hashing(class="form-radio") }}
+                {{ form.text.label(class='form-label', id="text-label") }}
+                {{ form.text(class='form-input-ta') }}
+                <p class="or-separator">or</p>
+                {{ form.file_upload.label(class='form-label', id="file-label") }}
+                {{ form.file_upload(class='form-input') }}
+                {{ form.submit(class='submit-btn') }}
+                <p class="insecure-warning">* algorithm is considered insecure</p>
+            </form>
+            <p>
+                <a href="{{ url_for('core.encryption') }}">Encrypt instead</a>
+                |
+                <a href="{{ url_for('core.index') }}">Home</a>
+            </p>
+        </div> 
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-text-container">
+                <p class="footer-text">Scramble API created by sedex</p>
+                <p class="footer-text">Follow the project or get involved on <a class="footer-link" href="https://github.com/sedexdev">Github</a></p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+{% endblock %}

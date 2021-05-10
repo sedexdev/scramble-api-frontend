@@ -1,18 +1,9 @@
 from flask_wtf import FlaskForm
-from flask_wtf.file import FileField, FileAllowed, FileRequired
-from wtforms import RadioField, SelectField, SubmitField, TextAreaField
-from wtforms.validators import DataRequired
+from flask_wtf.file import FileField, FileAllowed
+from wtforms import RadioField, SubmitField, TextAreaField
 
 
 class APIForm(FlaskForm):
-
-    service = SelectField(
-        'Service Type',
-        choices=[
-            ('encrypt', 'Encryption'),
-            ('hash', 'Hashing')
-        ],
-        validators=[DataRequired()])
 
     encryption = RadioField(
         'Encryption Type',
@@ -42,20 +33,11 @@ class APIForm(FlaskForm):
         ]
     )
 
-    plaintext = SelectField(
-        'Plaintext Type',
-        choices=[
-            ('text', 'Text'),
-            ('file', 'File')
-        ],
-        validators=[DataRequired()])
-
-    text = TextAreaField('Plaintext')
+    text = TextAreaField('Paste Plaintext')
 
     file_upload = FileField(
         'Upload file',
         validators=[
-            FileRequired(),
             FileAllowed(['.txt', '.pdf', '.docx'], 'Text files only!')])
 
     submit = SubmitField('Submit')

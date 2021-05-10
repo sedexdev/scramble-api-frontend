@@ -5,7 +5,7 @@ html, body {
     font-family: Arial, Helvetica, sans-serif;
 }
 .main-container {
-    width: 80%;
+    width: 100%;
     margin: auto;
 }
 .invisible {
@@ -36,6 +36,60 @@ html, body {
     background-color: red;
 }
 
+/* Core API Page */
+.service-options-outer-container {
+    text-align: center;
+}
+.service-options-outer-container p {
+    font-size: 2.8rem;
+    font-weight: bold;
+    margin: 100px 0 50px 0;
+}
+.service-options-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+    margin: 100px auto 200px auto;
+}
+.service-options-link {
+    text-decoration: none;
+    border: 5px solid darkred;
+    border-radius: 10px;
+    color: #222;
+    font-size: 3.2rem;
+    font-weight: bold;
+    width: 250px;
+    padding: 100px;
+}
+.service-options-link:hover {
+    box-shadow: 5px 5px 20px #999;
+    background-color: rgb(175, 236, 252);
+    color: darkred;
+}
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: darkred;
+    height: 70px;
+    padding: 10px;
+}
+.app-name-container {
+    margin-left: 20px;
+}
+.app-name {
+    color: #fff;
+    font-weight: bold;
+    font-size: 2.8rem;
+}
+.logout-container {
+    margin-right: 20px;
+}
+.insecure-warning {
+    text-align: left;
+}
+
 /* API forms */
 .form-container {
     text-align: center;
@@ -46,6 +100,10 @@ html, body {
     display: flex;
     flex-direction: column;
     margin: auto;
+}
+.core-heading {
+    font-size: 3rem;
+    margin: 20px 0 60px 0;
 }
 .form-heading {
     font-size: 3rem;
@@ -70,6 +128,11 @@ html, body {
     list-style-type: none;
     text-align: left;
 }
+.or-separator {
+    text-align: left;
+    font-weight: bold;
+    margin-left: 10px;
+}
 .submit-btn,
 .logout-btn {
     width: 150px;
@@ -87,46 +150,15 @@ html, body {
     background-color: rgb(0, 100, 139);
 }
 
-/* Core API Page */
-.main-header,
-.main-header-resize {
-    display: flex;
-    align-items: center;
-    background-color: darkred;
-    height: 70px;
-    padding: 10px;
-}
-.main-header {
-    justify-content: space-between;
-}
-.main-header-resize {
-    justify-content: right;
-}
-.app-name-container {
-    margin-left: 20px;
-}
-.app-name {
-    color: #fff;
-    font-weight: bold;
-    font-size: 2.8rem;
-}
-.logout-container {
-    margin-right: 20px;
-}
-.insecure-warning {
-    text-align: left;
-}
-
 /* Footer */
 .footer-container {
     background-color: #444;
 }
 .footer-text-container {
-    padding: 40px;
+    padding: 60px 0 60px 30px;
 }
 .footer-text {
     color: #fff;
-    font-size: 1.2rem;
     font-weight: bold;
 }
 .footer-link {
@@ -168,6 +200,15 @@ html, body {
 }
 
 /* Media Queries */
+@media (max-width: 1550px) {
+    .service-options-container {
+        flex-direction: column;
+        margin: 30px auto;
+    }
+    .service-options-link {
+        margin: 30px 0;
+    }
+}
 @media (max-width: 1000px) {
     /* API forms */
     .form {
@@ -175,13 +216,17 @@ html, body {
     }
 }
 @media (max-width: 700px) {
-    /* Core styles */
     .main-container {
         width: 100%;
     }
-    
-    /* API forms */
     .form {
         width: 90%;
+    }
+    .service-options-outer-container p {
+        margin: 70px 0 50px 0;
+    }
+    .service-options-link {
+        font-size: 2rem;
+        width: 60%;
     }
 }

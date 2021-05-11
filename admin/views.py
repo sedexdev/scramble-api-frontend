@@ -20,7 +20,7 @@ admin_blueprint = Blueprint(
 )
 
 
-@admin_blueprint.route('/admin', methods=['GET', 'POST'])
+@admin_blueprint.route('/admin/login', methods=['GET', 'POST'])
 def login_admin() -> Response:
     form = AdminForm()
     admin_args = {'title': 'Admin Login', 'form': form}
@@ -66,7 +66,7 @@ def update_admin() -> Response:
     return render_template('admin_update.html', **admin_args)
 
 
-@admin_blueprint.route('/logout', methods=['POST'])
+@admin_blueprint.route('/admin/logout', methods=['POST'])
 def logout_admin() -> Response:
     session.clear()
     return redirect(url_for('admin.login_admin'))

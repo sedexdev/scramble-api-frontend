@@ -8,9 +8,6 @@ html, body {
     width: 100%;
     margin: auto;
 }
-.invisible {
-    display: none;
-}
 
 /* Flashed messages */
 .message,
@@ -73,7 +70,7 @@ html, body {
     align-items: center;
     background-color: darkred;
     height: 70px;
-    padding: 10px;
+    padding: 10px 0;
 }
 .app-name-container {
     margin-left: 20px;
@@ -83,11 +80,71 @@ html, body {
     font-weight: bold;
     font-size: 2.8rem;
 }
-.logout-container {
-    margin-right: 20px;
-}
 .insecure-warning {
     text-align: left;
+}
+
+/* Menu Icon */
+.menu-container {
+    display: inline-block;
+    cursor: pointer;
+    margin: 0 20px;
+}
+.bar1, .bar2, .bar3 {
+    width: 50px;
+    height: 5px;
+    background-color: #fff;
+    transition: 0.4s;
+    margin: 10px 0;
+}
+/* Rotate first bar */
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-10px, 10px) ;
+    transform: rotate(-45deg) translate(-10px, 10px) ;
+}
+/* Fade out the second bar */
+.change .bar2 {
+    opacity: 0;
+}
+/* Rotate last bar */
+.change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-12px, -12px) ;
+    transform: rotate(45deg) translate(-12px, -12px) ;
+}
+.menu-options-container {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    position: absolute;
+    top: 90px;
+    width: 100%;
+    background-color: lightslategray;
+}
+.menu-option,
+.logout-btn {
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    padding: 20px;
+}
+.menu-option:hover {
+    background-color: #333;
+}
+.logout-btn {
+    border: none;
+    background: none;
+    outline: none;
+    width: 100%;
+    text-align: right;
+    cursor: pointer;
+}
+.logout-btn:hover {
+    background-color: #333;
+    cursor: pointer;
+}
+.invisible {
+    display: none;
 }
 
 /* API forms */
@@ -133,8 +190,7 @@ html, body {
     font-weight: bold;
     margin-left: 10px;
 }
-.submit-btn,
-.logout-btn {
+.submit-btn{
     width: 150px;
     color: #fff;
     background-color: rgb(0, 204, 255);
@@ -145,8 +201,7 @@ html, body {
     margin: 20px auto;
     cursor: pointer;
 }
-.submit-btn:hover,
-.logout-btn:hover  {
+.submit-btn:hover {
     background-color: rgb(0, 100, 139);
 }
 

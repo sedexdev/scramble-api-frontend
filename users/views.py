@@ -92,3 +92,16 @@ def update() -> Response:
             flash(res.message, 'warning')
             return render_template('update.html', **update_args)
     return render_template('update.html', **update_args)
+
+
+@user_blueprint.route('/account', methods=['GET', 'POST'])
+def account() -> Response:
+    if is_staging() and not admin_auth():
+        return redirect(url_for('admin.login_admin'))
+    return render_template('account.html')
+
+
+@user_blueprint.route('/logout', methods=['POST'])
+def logout() -> Response:
+    flash('Logged out', 'message')
+    return redirect(url_for('users.login'))

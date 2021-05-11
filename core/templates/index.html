@@ -7,11 +7,17 @@
         <div class="app-name-container invisible">
             <p class="app-name">Scramble API</p>
         </div>
-        <div class="logout-container">
-            <form method="POST">
-                <input type="submit" class="logout-btn" value="&#8617; Logout">
-            </form>
+        <div class="menu-container" onclick="toggleMenu(this)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
         </div>
+        <div class="menu-options-container invisible">
+            <a class="menu-option" href="{{url_for('users.account')}}">My Account</a>
+            <form class="logout-form" action="{{url_for('users.logout')}}" method="post">
+                <input class="logout-btn" type="submit" value="Logout">
+            </form>
+        </div> 
     </header>
 
     <div class="service-options-outer-container">

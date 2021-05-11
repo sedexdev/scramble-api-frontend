@@ -1,12 +1,6 @@
 (function() {
-    // Set variables for DOM elements
-    const email = document.getElementById('email');
+    
     const flashCollection = document.getElementsByClassName('flash-container');
-
-    // Focus on the email field of login/registration forms
-    if (email) {
-        email.focus();
-    }
 
     // Remove flashed messages after timeout
     if (flashCollection) {

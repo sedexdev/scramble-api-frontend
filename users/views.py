@@ -5,9 +5,16 @@ from flask import (
     redirect,
     render_template,
     url_for)
+from flask_login import current_user
 from werkzeug.wrappers import Response
 
-from .forms import LoginForm, RegisterForm, ResetForm, UpdateForm
+from .forms import (
+    AccountForm,
+    DeleteForm,
+    LoginForm,
+    RegisterForm,
+    ResetForm,
+    UpdateForm)
 from utils import is_staging, admin_auth
 
 user_blueprint = Blueprint(
@@ -15,7 +22,7 @@ user_blueprint = Blueprint(
     __name__,
     template_folder='templates')
 
-url = 'www.example.com'
+url = 'http://www.example.com'
 
 
 @user_blueprint.route('/login', methods=['GET', 'POST'])
@@ -98,7 +105,30 @@ def update() -> Response:
 def account() -> Response:
     if is_staging() and not admin_auth():
         return redirect(url_for('admin.login_admin'))
-    return render_template('account.html')
+    form = AccountForm()
+    delete_form = DeleteForm()
+    if form.validate_on_submit():
+        res = requests.post(url, data={
+            'email': form.email.data,
+            'current_pw': form.current_pw.data,
+            'new_pw': form.new_pw.data,
+            'confirm_pw': form.confirm_pw.data,
+        })
+        if res.status_code == 200:
+            flash(res.message, 'message')
+        else:
+            flash(res.message, 'warning')
+    if delete_form.validate_on_submit():
+        email = delete_form.email.data,
+        if email != current_user.email:
+            flash('Incorrect email', 'warning')
+        else:
+            flash('Account deleted', 'message')
+            return redirect(url_for('users.login'))
+    return render_template(
+        'account.html',
+        form=form,
+        delete_form=delete_form)
 
 
 @user_blueprint.route('/logout', methods=['POST'])

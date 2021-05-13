@@ -8,6 +8,15 @@ html, body {
     width: 100%;
     margin: auto;
 }
+.cover-block {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    opacity: 0.9;
+    height: 100vh;
+    width: 100vw;
+}
 
 /* Flashed messages */
 .message,
@@ -31,6 +40,42 @@ html, body {
 }
 .warning {
     background-color: red;
+}
+
+/* Buttons */
+.submit-btn,
+.delete-account-btn,
+.delete-btn,
+.cancel-delete-btn {
+    width: 150px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    padding: 10px;
+    margin: 20px auto;
+    cursor: pointer;
+}
+.submit-btn {
+    background-color: rgb(0, 204, 255);
+}
+.delete-account-btn,
+.delete-btn {
+    background-color: red;
+}
+.cancel-delete-btn {
+    background-color: #999;
+    margin-left: 10px;
+}
+.submit-btn:hover {
+    background-color: rgb(0, 100, 139);
+}
+.delete-account-btn:hover,
+.delete-btn:hover {
+    background-color: darkred;
+}
+.cancel-delete-btn:hover {
+    background-color: #333;
 }
 
 /* Core API Page */
@@ -83,6 +128,11 @@ html, body {
 .insecure-warning {
     text-align: left;
 }
+.results-data-container {
+    text-align: center;
+    width: 50%;
+    margin: 350px auto;
+}
 
 /* Menu Icon */
 .menu-container {
@@ -94,19 +144,16 @@ html, body {
     width: 50px;
     height: 5px;
     background-color: #fff;
-    transition: 0.4s;
+    transition: 0.2s;
     margin: 10px 0;
 }
-/* Rotate first bar */
 .change .bar1 {
     -webkit-transform: rotate(-45deg) translate(-10px, 10px) ;
     transform: rotate(-45deg) translate(-10px, 10px) ;
 }
-/* Fade out the second bar */
 .change .bar2 {
     opacity: 0;
 }
-/* Rotate last bar */
 .change .bar3 {
     -webkit-transform: rotate(45deg) translate(-12px, -12px) ;
     transform: rotate(45deg) translate(-12px, -12px) ;
@@ -190,19 +237,58 @@ html, body {
     font-weight: bold;
     margin-left: 10px;
 }
-.submit-btn{
-    width: 150px;
-    color: #fff;
-    background-color: rgb(0, 204, 255);
-    border: none;
-    border-radius: 5px;
-    font-size: 1.1rem;
-    padding: 10px;
-    margin: 20px auto;
-    cursor: pointer;
+
+/* User account page */
+.account-data-container {
+    margin: 50px 0;
 }
-.submit-btn:hover {
-    background-color: rgb(0, 100, 139);
+.account-data-container h1 {
+    text-align: center;
+    font-size: 2.8rem;
+    margin: 40px 0;
+}
+.account-data-container h2 {
+    font-size: 2rem;
+}
+.update-pw-label {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-left: 10px;
+    padding: 10px 0;
+}
+.delete-account-option-container {
+    text-align: left;
+    border: 1px solid red;
+    border-radius: 10px;
+    width: 70%;
+    padding: 50px;
+    margin: 100px auto;
+}
+.delete-account-warning {
+    font-size: 1.2rem;
+    text-align: justify;
+    margin: 20px auto;
+}
+.delete-account-modal {
+    z-index: 1;
+    position: fixed;
+    top: 30%;
+    left: 0;
+    right: 0;
+    width: 50%;
+    border: 5px solid darkred;
+    border-radius: 10px;
+    background-color: ivory;
+    padding: 40px;
+    margin: 0 auto;
+}
+.delete-account-header {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-left: 10px;
+}
+.delete-form-btn-container {
+    margin: 10px 0;
 }
 
 /* Footer */
@@ -269,12 +355,18 @@ html, body {
     .form {
         width: 70%;
     }
+    .delete-account-warning {
+        width: 70%;
+    }
 }
 @media (max-width: 700px) {
     .main-container {
         width: 100%;
     }
     .form {
+        width: 90%;
+    }
+    .delete-account-warning {
         width: 90%;
     }
     .service-options-outer-container p {

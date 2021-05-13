@@ -13,7 +13,8 @@
             <div class="bar3"></div>
         </div>
         <div class="menu-options-container invisible">
-            <a class="menu-option" href="{{url_for('users.account')}}">My Account</a>
+            <a class="menu-option" href="{{url_for('core.index')}}" onclick="clearMenu()">Home</a>
+            <a class="menu-option" href="{{url_for('users.account')}}" onclick="clearMenu()">My Account</a>
             <form class="logout-form" action="{{url_for('users.logout')}}" method="post">
                 <input class="logout-btn" type="submit" value="Logout">
             </form>

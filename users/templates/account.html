@@ -2,8 +2,72 @@
 
 {% block body %}
 
-<div>
-    <p>My Account</p>
-</div> 
+<div class="api-form-container">
+    <header class="main-header">
+        <div class="app-name-container invisible">
+            <p class="app-name">Scramble API</p>
+        </div>
+        <div class="menu-container" onclick="toggleMenu(this)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+        <div class="menu-options-container invisible">
+            <a class="menu-option" href="{{url_for('core.index')}}" onclick="clearMenu()">Home</a>
+            <a class="menu-option" href="{{url_for('users.account')}}" onclick="clearMenu()">My Account</a>
+            <form class="logout-form" action="{{url_for('users.logout')}}" method="post">
+                <input class="logout-btn" type="submit" value="Logout">
+            </form>
+        </div> 
+    </header>
+
+    <div class="account-data-container">
+        <h1>My Account</h1>
+        <form class="form" action="{{url_for('users.account')}}" method="POST">
+            {{ form.hidden_tag() }}
+            {{ form.email.label(class='form-label') }} {{ form.email(class='form-input') }}
+            <p class="update-pw-label">Change your password</p>
+            {{ form.current_pw.label(class='form-label') }} {{ form.current_pw(class='form-input') }}
+            {{ form.new_pw.label(class='form-label') }} {{ form.new_pw(class='form-input') }}
+            {{ form.confirm_pw.label(class='form-label') }} {{ form.confirm_pw(class='form-input') }}
+            {{ form.submit(class="submit-btn") }}
+        </form>
+        <div class="delete-account-option-container">
+            <h2>Delete your account?</h2>
+            <p class="delete-account-warning">
+                This action will delete all the data held against your account including your user ID, 
+                email address, login data, and password history. This action cannot be undone so if you 
+                want to use the service again you will need to re-register, your previous email will be 
+                valid if you wish to sign back up. In accordance with GDPR regulations you are free to 
+                remove your data from our system at any time.
+            </p>
+            <button class="delete-account-btn" onclick="showDeleteModal()">Delete Account</button>
+        </div>
+    </div>
+
+    <div id="block-screen"></div>
+
+    <div class="delete-account-modal invisible" id="delete-modal">
+        <form action="{{url_for('users.account')}}" method="POST">
+            <h2 class="delete-account-header">Confirm Deletion</h2>
+            {{ delete_form.hidden_tag() }}
+            {{ delete_form.email.label(class='form-label') }}
+            {{ delete_form.email(class='form-input') }}
+            <div class="delete-form-btn-container">
+                {{ delete_form.submit(class="delete-btn") }}
+                <button class="cancel-delete-btn" onclick="hideDeleteModal()">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-text-container">
+                <p class="footer-text">Scramble API created by sedex</p>
+                <p class="footer-text">Follow the project or get involved on <a class="footer-link" href="https://github.com/sedexdev">Github</a></p>
+            </div>
+        </div>
+    </footer>
+</div>
 
 {% endblock %}

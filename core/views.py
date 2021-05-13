@@ -16,7 +16,7 @@ core_blueprint = Blueprint(
     __name__,
     template_folder='templates')
 
-url = 'www.example.com'
+url = 'http://www.example.com'
 
 
 @core_blueprint.route('/', methods=['GET', 'POST'])
@@ -66,3 +66,8 @@ def encryption() -> Response:
             flash(res.message, 'warning')
             return render_template('encrypt.html', **index_args)
     return render_template('encrypt.html', **index_args)
+
+
+@core_blueprint.route('/results')
+def results():
+    return render_template('results.html')

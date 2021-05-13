@@ -30,3 +30,18 @@ class UpdateForm(FlaskForm):
     new_pw = PasswordField('New Password', validators=[DataRequired()])
     confirm_pw = PasswordField('Confirm Password', validators=[DataRequired()])
     submit = SubmitField('Submit')
+
+
+class AccountForm(FlaskForm):
+
+    email = StringField('Email')
+    current_pw = PasswordField('Current Password')
+    new_pw = PasswordField('New Password')
+    confirm_pw = PasswordField('Confirm Password')
+    submit = SubmitField('Submit')
+
+
+class DeleteForm(FlaskForm):
+
+    email = StringField('Enter email to confirm', validators=[DataRequired()])
+    submit = SubmitField('Delete')

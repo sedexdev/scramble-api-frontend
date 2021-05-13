@@ -287,8 +287,11 @@ html, body {
     font-weight: bold;
     margin-left: 10px;
 }
+#delete-account-input {
+    width: 85% !important;
+}
 .delete-form-btn-container {
-    margin: 10px 0;
+    margin: 10px 0 10px 10px;
 }
 
 /* Footer */
@@ -355,9 +358,6 @@ html, body {
     .form {
         width: 70%;
     }
-    .delete-account-warning {
-        width: 70%;
-    }
 }
 @media (max-width: 700px) {
     .main-container {
@@ -366,14 +366,21 @@ html, body {
     .form {
         width: 90%;
     }
-    .delete-account-warning {
-        width: 90%;
-    }
     .service-options-outer-container p {
         margin: 70px 0 50px 0;
     }
     .service-options-link {
         font-size: 2rem;
         width: 60%;
+    }
+    .delete-account-option-container {
+        padding: 20px;
+    }
+    .delete-account-modal {
+        width: 80%;
+        padding: 10px;
+    }
+    .cancel-delete-btn {
+        margin: 0;
     }
 }

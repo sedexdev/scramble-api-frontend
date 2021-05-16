@@ -106,7 +106,7 @@ def account() -> Response:
     if is_staging() and not admin_auth():
         return redirect(url_for('admin.login_admin'))
     form = AccountForm()
-    delete_form = DeleteForm()
+    del_form = DeleteForm()
     if form.validate_on_submit():
         res = requests.post(url, data={
             'email': form.email.data,
@@ -118,17 +118,18 @@ def account() -> Response:
             flash(res.message, 'message')
         else:
             flash(res.message, 'warning')
-    if delete_form.validate_on_submit():
-        email = delete_form.email.data,
+    if del_form.validate_on_submit():
+        email = del_form.email.data,
         if email != current_user.email:
-            flash('Incorrect email', 'warning')
+            flash('Invalid email', 'warning')
         else:
-            flash('Account deleted', 'message')
-            return redirect(url_for('users.login'))
-    return render_template(
-        'account.html',
-        form=form,
-        delete_form=delete_form)
+            res = requests.post(url, data={'email': email})
+            if res.status_code == 200:
+                flash(res.message, 'message')
+                return redirect(url_for('users.login'))
+            else:
+                flash(res.message, 'warning')
+    return render_template('account.html', form=form, del_form=del_form)
 
 
 @user_blueprint.route('/logout', methods=['POST'])

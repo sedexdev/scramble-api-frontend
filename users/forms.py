@@ -43,5 +43,7 @@ class AccountForm(FlaskForm):
 
 class DeleteForm(FlaskForm):
 
-    email = StringField('Enter email to confirm', validators=[DataRequired()])
+    email = StringField(
+        'Enter your email to confirm',
+        validators=[DataRequired()])
     submit = SubmitField('Delete')

@@ -50,12 +50,12 @@
     <div class="delete-account-modal invisible" id="delete-modal">
         <form action="{{url_for('users.account')}}" method="POST">
             <h2 class="delete-account-header">Confirm Deletion</h2>
-            {{ delete_form.hidden_tag() }}
-            {{ delete_form.email.label(class='form-label') }}
+            {{ del_form.hidden_tag() }}
+            {{ del_form.email.label(class='form-label') }}
             <br />
-            {{ delete_form.email(class='form-input', id='delete-account-input') }}
+            {{ del_form.email(class='form-input', id='delete-account-input') }}
             <div class="delete-form-btn-container">
-                {{ delete_form.submit(class="delete-btn") }}
+                {{ del_form.submit(class="delete-btn") }}
                 <button class="cancel-delete-btn" onclick="hideDeleteModal()">Cancel</button>
             </div>
         </form>

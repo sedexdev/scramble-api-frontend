@@ -10,6 +10,7 @@ env:
   global:
     - APP_SETTINGS="config.TestingConfig"
     - SECRET_KEY="blah_blah_blah"
+    - API_URL="https://test_url.com"
 # command to run tests
 script:
   - python -m pytest -v

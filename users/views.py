@@ -1,11 +1,10 @@
-import requests
 from flask import (
     Blueprint,
     flash,
     redirect,
     render_template,
     url_for)
-from flask_login import current_user
+from flask_login import current_user, login_user, logout_user
 from werkzeug.wrappers import Response
 
 from .forms import (
@@ -15,14 +14,12 @@ from .forms import (
     RegisterForm,
     ResetForm,
     UpdateForm)
-from utils import is_staging, admin_auth
+from utils import admin_auth, is_staging, make_api_request
 
 user_blueprint = Blueprint(
     'users',
     __name__,
     template_folder='templates')
-
-url = 'http://www.example.com'
 
 
 @user_blueprint.route('/login', methods=['GET', 'POST'])
@@ -32,10 +29,11 @@ def login() -> Response:
     form = LoginForm()
     login_args = {'title': 'Login', 'form': form}
     if form.validate_on_submit():
-        res = requests.post(url, data={
+        res = make_api_request('post', 'users/login', data={
             'email': form.email.data,
             'password': form.password.data})
         if res.status_code == 200:
+            login_user(res.json().get('user'))
             flash(res.message, 'message')
             return redirect(url_for('core.index'))
         else:
@@ -51,7 +49,7 @@ def register() -> Response:
     form = RegisterForm()
     register_args = {'title': 'Register', 'form': form}
     if form.validate_on_submit():
-        res = requests.post(url, data={
+        res = make_api_request('post', 'users/register', data={
             'email': form.email.data,
             'password': form.password.data,
             'confirm_pw': form.confirm_pw.data})
@@ -71,7 +69,8 @@ def reset() -> Response:
     form = ResetForm()
     reset_args = {'title': 'Reset', 'form': form}
     if form.validate_on_submit():
-        res = requests.post(url, data={'email': form.email.data})
+        res = make_api_request('post', 'users/reset', data={
+            'email': form.email.data})
         if res.status_code == 200:
             flash(res.message, 'message')
             return redirect(url_for('users.update'))
@@ -88,7 +87,8 @@ def update() -> Response:
     form = UpdateForm()
     update_args = {'title': 'Update', 'form': form}
     if form.validate_on_submit():
-        res = requests.post(url, data={
+        res = make_api_request('put', 'users/update', data={
+            'email': current_user.email,
             'password': form.password.data,
             'new_pw': form.new_pw.data,
             'confirm_pw': form.confirm_pw.data})
@@ -108,7 +108,7 @@ def account() -> Response:
     form = AccountForm()
     del_form = DeleteForm()
     if form.validate_on_submit():
-        res = requests.post(url, data={
+        res = make_api_request('put', 'users/account', data={
             'email': form.email.data,
             'current_pw': form.current_pw.data,
             'new_pw': form.new_pw.data,
@@ -123,7 +123,8 @@ def account() -> Response:
         if email != current_user.email:
             flash('Invalid email', 'warning')
         else:
-            res = requests.post(url, data={'email': email})
+            res = make_api_request('delete', 'users/delete', data={
+                'email': email})
             if res.status_code == 200:
                 flash(res.message, 'message')
                 return redirect(url_for('users.login'))
@@ -134,5 +135,6 @@ def account() -> Response:
 
 @user_blueprint.route('/logout', methods=['POST'])
 def logout() -> Response:
+    logout_user()
     flash('Logged out', 'message')
     return redirect(url_for('users.login'))

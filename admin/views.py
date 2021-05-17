@@ -9,9 +9,10 @@ from flask import (
 from werkzeug.wrappers import Response
 
 from .forms import AdminForm, AdminUpdateForm
-from extensions import db
-from models import AdminUser
-from utils import is_staging, admin_auth
+from utils import (
+    admin_auth,
+    is_staging,
+    make_api_request)
 
 admin_blueprint = Blueprint(
     'admin',
@@ -27,21 +28,17 @@ def login_admin() -> Response:
     if request.method == 'POST':
         if form.validate_on_submit():
             admin_args['title'] = 'Admin'
-            username = form.username.data
-            password = form.password.data
-            user = AdminUser.query.filter_by(username=username).first()
-            if not user:
+            res = make_api_request('post', 'admin/login', data={
+                'username': form.username.data,
+                'password': form.password.data
+            })
+            if res.status_code == 200:
+                session['ADMIN_SESSION'] = True
+                flash(f"Logged in as {res['user']['username']}', 'message")
+                return redirect(url_for('core.index'))
+            else:
                 flash('Invalid credentials', 'warning')
-                return render_template('admin_login.html', **admin_args)
-            if not user.check_pw(password):
-                flash('Invalid credentials', 'warning')
-                return render_template('admin_login.html', **admin_args)
-            session['ADMIN_USERNAME'] = user.username
-            flash(f'Logged in as {user.username}', 'message')
-            return redirect(url_for('core.index'))
-        else:
-            flash('Invalid credentials', 'warning')
-            return render_template('admin_login.html',  **admin_args)
+                return render_template('admin_login.html',  **admin_args)
     return render_template('admin_login.html',  **admin_args)
 
 
@@ -52,17 +49,17 @@ def update_admin() -> Response:
     form = AdminUpdateForm()
     admin_args = {'title': 'Admin Update', 'form': form}
     if form.validate_on_submit():
-        username = session['ADMIN_USERNAME']
-        password = form.confirm_pw.data
-        admin_user = AdminUser.query.filter_by(username=username).first()
-        if not admin_user.verify_passord(password):
-            flash('Password must contain [a-zA-Z0-9@!?_#£$%&*]', 'warning')
+        res = make_api_request('post', 'admin/update', data={
+            'password': form.password.data,
+            'new_pw': form.new_pw.data,
+            'confirm_pw': form.confirm_pw.data
+        })
+        if res.status_code == 200:
+            flash(res.message, 'message')
+            return redirect(url_for('core.index'))
+        else:
+            flash(res.message, 'warning')
             return render_template('update.html', **admin_args)
-        admin_user.password_hash = admin_user.hash_pw(password)
-        db.session.update(admin_user)
-        db.session.commit()
-        flash('Password updated', 'message')
-        return redirect(url_for('core.index'))
     return render_template('admin_update.html', **admin_args)
 
 

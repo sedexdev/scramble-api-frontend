@@ -1,5 +1,3 @@
-import requests
-
 from flask import (
     Blueprint,
     flash,
@@ -8,15 +6,13 @@ from flask import (
     url_for)
 from werkzeug.wrappers import Response
 
-from utils import is_staging, admin_auth
+from utils import admin_auth, is_staging, make_api_request
 from .forms import APIForm
 
 core_blueprint = Blueprint(
     'core',
     __name__,
     template_folder='templates')
-
-url = 'http://www.example.com'
 
 
 @core_blueprint.route('/', methods=['GET', 'POST'])
@@ -33,14 +29,15 @@ def hashing() -> Response:
     form = APIForm()
     index_args = {'title': 'Scramble API', 'form': form}
     if form.validate_on_submit():
-        res = requests.post(url, data={
+        res = make_api_request('post', 'hashing', data={
             'hashing': form.hashing.data,
             'text': form.text.data,
             'file': form.file_upload.data
         })
         if res.status_code == 200:
-            flash(res.message, 'message')
-            return render_template('results.html')
+            results = res.json()
+            flash(results['message'], 'message')
+            return render_template('results.html', results=results)
         else:
             flash(res.message, 'warning')
             return render_template('hash.html', **index_args)
@@ -54,14 +51,15 @@ def encryption() -> Response:
     form = APIForm()
     index_args = {'title': 'Scramble API', 'form': form}
     if form.validate_on_submit():
-        res = requests.post(url, data={
+        res = make_api_request('post', 'encryption', data={
             'encryption': form.encryption.data,
             'text': form.text.data,
             'file': form.file_upload.data
         })
         if res.status_code == 200:
-            flash(res.message, 'message')
-            return render_template('results.html')
+            results = res.json()
+            flash(results['message'], 'message')
+            return render_template('results.html', results=results)
         else:
             flash(res.message, 'warning')
             return render_template('encrypt.html', **index_args)

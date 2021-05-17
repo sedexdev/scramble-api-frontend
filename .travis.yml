@@ -10,9 +10,6 @@ env:
   global:
     - APP_SETTINGS="config.TestingConfig"
     - SECRET_KEY="blah_blah_blah"
-    - DATABASE_URI="postgresql:///travis_ci_test"
 # command to run tests
-before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
 script:
   - python -m pytest -v

@@ -24,8 +24,9 @@
     <div class="service-options-outer-container">
         <p>Service options</p>
         <div class="service-options-container">
-            <a class="service-options-link" href="{{ url_for('core.hashing') }}">Hashing</a>
-            <a class="service-options-link" href="{{ url_for('core.encryption') }}">Encryption</a>
+            <a class="service-options-link" id="subs-link" href="{{ url_for('core.substitution') }}">Substitution</a>
+            <a class="service-options-link" id="hash-link" href="{{ url_for('core.hashing') }}">Hashing</a>
+            <a class="service-options-link" id="encrypt-link" href="{{ url_for('core.encryption') }}">Encryption</a>
         </div>
     </div>
 

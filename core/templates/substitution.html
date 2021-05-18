@@ -24,17 +24,19 @@
     
         <div class="form-container">
             <h1 class="core-heading invisible">Scramble API</h1>
-            <form class="form" action="{{url_for('core.encryption')}}" method="POST" enctype="multipart/form-data">
+            <form class="form" action="{{url_for('core.substitution')}}" method="POST" enctype = "multipart/form-data">
                 {{ form.hidden_tag() }}
-                {{ form.encryption.label(class="form-label", id="encryption-label") }}
-                {{ form.encryption(class="form-radio") }}
+                {{ form.shift_value.label(class="form-label") }}
+                {{ form.shift_value(class="form-input") }}
+                {{ form.random_shift.label(class="form-label") }}
+                {{ form.random_shift(class="form-radio") }}
                 {{ form.text.label(class='form-label', id="text-label") }}
                 {{ form.text(class='form-input-ta') }}
                 <p class="or-separator">or</p>
                 {{ form.file_upload.label(class='form-label', id="file-label") }}
                 {{ form.file_upload(class='form-input') }}
                 {{ form.submit(class='submit-btn') }}
-                <p class="insecure-warning">* algorithm is considered insecure</p>
+                <p class="insecure-warning">* punctuation will be preserved</p>
             </form>
             <p><a href="{{ url_for('core.index') }}">Home</a></p>
         </div> 

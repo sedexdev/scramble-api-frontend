@@ -22,6 +22,29 @@ def index() -> Response:
     return render_template('index.html')
 
 
+@core_blueprint.route('/substitution', methods=['GET', 'POST'])
+def substitution() -> Response:
+    if is_staging() and not admin_auth():
+        return redirect(url_for('admin.login_admin'))
+    form = APIForm()
+    index_args = {'title': 'Scramble API', 'form': form}
+    if form.validate_on_submit():
+        res = make_api_request('post', 'substitution', data={
+            'shift_value': form.shift_value.data,
+            'random_shift': form.random_shift.data,
+            'text': form.text.data,
+            'file': form.file_upload.data
+        })
+        if res.status_code == 200:
+            results = res.json()
+            flash(results['message'], 'message')
+            return render_template('results.html', results=results)
+        else:
+            flash(res.message, 'warning')
+            return render_template('substitution.html', **index_args)
+    return render_template('substitution.html', **index_args)
+
+
 @core_blueprint.route('/hashing', methods=['GET', 'POST'])
 def hashing() -> Response:
     if is_staging() and not admin_auth():

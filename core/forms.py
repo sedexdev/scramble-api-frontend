@@ -1,9 +1,18 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import RadioField, SubmitField, TextAreaField
+from wtforms import IntegerField, RadioField, SubmitField, TextAreaField
 
 
 class APIForm(FlaskForm):
+
+    shift_value = IntegerField('Shift Value*')
+
+    random_shift = RadioField(
+        'Use Random Shift Value?*',
+        choices=[
+            ('random', 'Select to use a random shift value')
+        ]
+    )
 
     encryption = RadioField(
         'Encryption Type',

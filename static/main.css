@@ -91,23 +91,33 @@ html, body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 60%;
+    width: 80%;
     margin: 100px auto 200px auto;
 }
 .service-options-link {
+    display: flex;
+    justify-content: center;
     text-decoration: none;
-    border: 5px solid darkred;
-    border-radius: 10px;
-    color: #222;
     font-size: 3.2rem;
     font-weight: bold;
+    color: #222;
+    border: 5px solid darkred;
+    border-radius: 10px;
     width: 250px;
     padding: 100px;
 }
 .service-options-link:hover {
-    box-shadow: 5px 5px 20px #999;
-    background-color: rgb(175, 236, 252);
-    color: darkred;
+    box-shadow: 10px 10px 20px #333;
+    color: #fff;
+}
+#subs-link:hover {
+    background-color: rgb(108, 226, 255);
+}
+#hash-link:hover {
+    background-color: rgb(255, 136, 67);
+}
+#encrypt-link:hover {
+    background-color: rgb(120, 255, 120);
 }
 .main-header {
     display: flex;
@@ -373,7 +383,7 @@ html, body {
 }
 
 /* Media Queries */
-@media (max-width: 1550px) {
+@media (max-width: 1750px) {
     .service-options-container {
         flex-direction: column;
         margin: 30px auto;
@@ -403,7 +413,7 @@ html, body {
     }
     .service-options-link {
         font-size: 2rem;
-        width: 60%;
+        width: 40%;
     }
     .delete-account-option-container {
         padding: 20px;

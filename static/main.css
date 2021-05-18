@@ -362,9 +362,11 @@ html, body {
     font-size: 1.8rem;
 }
 .error-home-link {
+    display: block;
     text-decoration: none;
     font-size: 1.4rem;
-    color: rgb(0, 204, 255)
+    color: rgb(0, 204, 255);
+    margin: 40px 0;
 }
 .error-home-link:hover {
     color: rgb(0, 100, 139);

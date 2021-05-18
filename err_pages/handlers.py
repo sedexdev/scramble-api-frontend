@@ -10,5 +10,6 @@ err_blueprint = Blueprint(
 def err_404(err):
     return render_template(
         'error.html',
+        err=err,
         error_code='404',
         message="Oops, we can't find that page..."), 404

@@ -42,9 +42,9 @@ def make_api_request(type, endpoint, data) -> Response:
     if type == 'get':
         res = requests.get(f"{url}/{endpoint}")
     elif type == 'post':
-        res = requests.post(f"{url}/{endpoint}", **data)
+        res = requests.post(f"{url}/{endpoint}", data=data)
     elif type == 'put':
-        res = requests.put(f"{url}/{endpoint}", **data)
+        res = requests.put(f"{url}/{endpoint}", data=data)
     elif type == 'delete':
-        res = requests.delete(f"{url}/{endpoint}", **data)
+        res = requests.delete(f"{url}/{endpoint}", data=data)
     return res

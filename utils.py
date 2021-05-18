@@ -1,6 +1,5 @@
 import os
 import requests
-from typing import Dict
 from flask import flash, session
 from werkzeug.wrappers import Response
 

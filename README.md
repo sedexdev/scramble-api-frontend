@@ -13,7 +13,7 @@ as well as creating hash digests for passwords and sensitive data.
 
 <h2>Simple Substitution Cipher</h2>
 
-Either select a shift value for the substitution or ask for a random and
+Either select a shift value for the substitution or ask for a random value and
 the API will return the shifted plaintext as well as the key mapping for 
 decrypting it
 

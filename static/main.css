@@ -343,6 +343,33 @@ html, body {
     margin-right: 10px;
 }
 
+/* Error Page */
+.error-page-main {
+    padding: 20px;
+}
+.error-container {
+    text-align: center;
+    margin-top: 200px;
+    padding: 10px;
+}
+.error-code {
+    font-size: 4.5rem;
+    font-weight: bold;
+    color: rgb(0, 204, 255);
+    margin: 0;
+}
+.error-message {
+    font-size: 1.8rem;
+}
+.error-home-link {
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: rgb(0, 204, 255)
+}
+.error-home-link:hover {
+    color: rgb(0, 100, 139);
+}
+
 /* Media Queries */
 @media (max-width: 1550px) {
     .service-options-container {

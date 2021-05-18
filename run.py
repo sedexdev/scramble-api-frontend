@@ -6,10 +6,12 @@ def import_blueprints() -> None:
     global admin_blueprint
     global core_blueprint
     global user_blueprint
+    global err_blueprint
 
     from admin.views import admin_blueprint
     from core.views import core_blueprint
     from users.views import user_blueprint
+    from err_pages.handlers import err_blueprint
 
 
 def create_app(config: str) -> Flask:
@@ -21,6 +23,7 @@ def create_app(config: str) -> Flask:
     app.register_blueprint(admin_blueprint)
     app.register_blueprint(core_blueprint)
     app.register_blueprint(user_blueprint)
+    app.register_blueprint(err_blueprint)
 
     return app
 

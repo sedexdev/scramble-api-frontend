@@ -3,6 +3,7 @@ from flask import (
     flash,
     redirect,
     render_template,
+    request,
     url_for)
 from flask_login import current_user, login_user, logout_user
 from werkzeug.wrappers import Response
@@ -35,7 +36,10 @@ def login() -> Response:
         if res.status_code == 200:
             login_user(res.json().get('user'))
             flash(res.message, 'message')
-            return redirect(url_for('core.index'))
+            next = request.args.get('next')
+            if next is None or not next[0] == '/':
+                next = url_for('core.index')
+            return redirect(next)
         else:
             flash(res.message, 'warning')
             return render_template('login.html', **login_args)
